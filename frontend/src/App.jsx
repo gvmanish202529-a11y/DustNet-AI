@@ -1,9 +1,17 @@
+import { Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+
 function App() {
   return (
-    <div>
-      <h1>DustNet AI</h1>
-      <p>Industrial Rover Management Platform</p>
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 
