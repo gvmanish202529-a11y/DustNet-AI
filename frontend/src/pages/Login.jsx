@@ -1,9 +1,24 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff, LogIn } from "lucide-react";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Temporary hackathon login
+    if (email.trim() && password.trim()) {
+      navigate("/dashboard");
+    } else {
+      alert("Please enter email and password");
+    }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950 px-6">
@@ -18,8 +33,7 @@ const Login = () => {
           </p>
         </div>
 
-        <form className="space-y-5">
-          {/* Email */}
+        <form className="space-y-5" onSubmit={handleSubmit}>
           <div>
             <label className="mb-2 block text-sm text-slate-300">
               Email
@@ -34,12 +48,13 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-xl border border-slate-700 bg-slate-800 py-3 pl-11 pr-4 text-white outline-none transition focus:border-orange-500"
               />
             </div>
           </div>
 
-          {/* Password */}
           <div>
             <label className="mb-2 block text-sm text-slate-300">
               Password
@@ -54,6 +69,8 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full rounded-xl border border-slate-700 bg-slate-800 py-3 pl-11 pr-12 text-white outline-none transition focus:border-orange-500"
               />
 
@@ -71,7 +88,6 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Remember */}
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center gap-2 text-slate-400">
               <input type="checkbox" />
@@ -86,7 +102,6 @@ const Login = () => {
             </button>
           </div>
 
-          {/* Login */}
           <button
             type="submit"
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 py-3 font-semibold text-white transition hover:bg-orange-600"
