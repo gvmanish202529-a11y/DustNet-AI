@@ -5,75 +5,60 @@ import { useAuth } from "../../context/AuthContext";
 import "./Login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-const navigate=useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const {login}=useAuth();
+  const submit = async (e) => {
+    e.preventDefault();
 
-const[email,setEmail]=useState("");
+    try {
+      const data = await loginUser({
+        email,
+        password,
+      });
 
-const[password,setPassword]=useState("");
+      login(data.access_token);
 
-const submit=async(e)=>{
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login Error:", err);
+      console.error("Response:", err.response);
 
-e.preventDefault();
+      alert(
+        err.response?.data?.detail ||
+          err.response?.data?.message ||
+          err.message ||
+          "Login Failed"
+      );
+    }
+  };
 
-try{
+  return (
+    <div className="login">
+      <form onSubmit={submit}>
+        <h1>DustNet AI</h1>
 
-const data=await loginUser({
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-email,
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-password
-
-});
-
-login(data.access_token);
-
-navigate("/dashboard");
-
-}
-
-catch(err){
-
-alert("Invalid Credentials");
-
-}
-
-};
-
-return(
-
-<div className="login">
-
-<form onSubmit={submit}>
-
-<h1>DustNet AI</h1>
-
-<input
-type="email"
-placeholder="Email"
-value={email}
-onChange={(e)=>setEmail(e.target.value)}
-/>
-
-<input
-type="password"
-placeholder="Password"
-value={password}
-onChange={(e)=>setPassword(e.target.value)}
-/>
-
-<button>
-
-Login
-
-</button>
-
-</form>
-
-</div>
-
-);
-
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 }
