@@ -1,0 +1,11 @@
+.battery-chart{
+margin-top:25px;
+background:#101d34;
+padding:25px;
+border-radius:18px;
+height:380px;
+}
+
+.battery-chart h2{
+margin-bottom:20px;
+}

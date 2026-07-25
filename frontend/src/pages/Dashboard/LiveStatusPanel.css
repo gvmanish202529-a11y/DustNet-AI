@@ -1,0 +1,36 @@
+.live-panel{
+margin-top:35px;
+background:#101d34;
+padding:25px;
+border-radius:18px;
+}
+
+.live-panel h2{
+margin-bottom:25px;
+}
+
+.live-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.live-card{
+background:#162540;
+padding:20px;
+border-radius:14px;
+transition:.3s;
+}
+
+.live-card:hover{
+transform:translateY(-5px);
+}
+
+.live-card p{
+color:#9fb5c9;
+margin-bottom:10px;
+}
+
+.live-card h3{
+font-size:28px;
+}

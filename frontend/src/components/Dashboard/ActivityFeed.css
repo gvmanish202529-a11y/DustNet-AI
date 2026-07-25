@@ -1,0 +1,17 @@
+.activity-feed{
+margin-top:25px;
+background:#101d34;
+padding:25px;
+border-radius:18px;
+}
+
+.activity-feed h2{
+margin-bottom:20px;
+}
+
+.activity-item{
+padding:15px;
+background:#162540;
+margin-bottom:12px;
+border-radius:12px;
+}

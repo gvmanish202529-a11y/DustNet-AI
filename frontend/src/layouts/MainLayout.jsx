@@ -1,23 +1,22 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Navbar from "../components/Navbar/Navbar";
 
-const MainLayout = () => {
+export default function MainLayout({ children }) {
   return (
-    <div className="flex h-screen bg-slate-950 text-white overflow-hidden">
-      {/* Sidebar */}
+    <div className="flex h-screen bg-[#08111f] text-white overflow-hidden">
+
       <Sidebar />
 
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 overflow-hidden">
+      <div className="flex flex-col flex-1">
+
         <Navbar />
 
-        <main className="flex-1 overflow-y-auto bg-slate-900 p-6">
-          <Outlet />
+        <main className="flex-1 overflow-auto p-8 bg-[#0b1426]">
+          {children}
         </main>
+
       </div>
+
     </div>
   );
-};
-
-export default MainLayout;
+}
